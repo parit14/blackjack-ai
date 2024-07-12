@@ -121,10 +121,6 @@ func main() {
 	gs = EndHand(gs)
 }
 
-func draw(cards []deck.Card) (deck.Card, []deck.Card) {
-	return cards[0], cards[1:]
-}
-
 func (h Hand) MinScore() int {
 	score := 0
 	for _, c := range h {
@@ -146,20 +142,6 @@ func (h Hand) Score() int {
 	return minScore
 }
 
-type State int8
-
-const (
-	StatePlayerTurn State = iota
-	StateDealerTurn
-	StateHandOver
-)
-
-type GameState struct {
-	Deck   []deck.Card
-	State  State
-	Player Hand
-	Dealer Hand
-}
 
 func (gs *GameState) CurrentPlayer() *Hand {
 	switch gs.State {
